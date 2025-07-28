@@ -12,7 +12,7 @@ Finance Lab is a modern web application designed to help users manage their fina
 - 💳 Balance tracking (supports cents)
 - ⚙️ Backend built with Node.js + Express
 - 🗃️ PostgreSQL for data persistence
-- 🎨 Frontend UI inspired by Dribbble (React.js)
+- 🎨 Frontend built with React.js
 - 📦 Clean folder structure & modular code
 
 ```
@@ -61,6 +61,6 @@ finance-lab/
 ```
 
 
-🧠 Inspiration
+## 🧠 Inspiration
 The UI is inspired by designs from Dribbble, focusing on clean layout, minimal colors, and accessible UX — making financial tracking feel intuitive and simple.
 
