@@ -31,7 +31,7 @@ Finance Lab is a modern web application designed to help users manage their fina
 
 ```bash
 git clone https://github.com/GomoAtDVT/Finance-Lab.git
-cd finance-lab
+
 
 ```
 cd backend
