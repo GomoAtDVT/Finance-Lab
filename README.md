@@ -54,8 +54,7 @@ finance-lab/
 │   ├── assets/
 │   ├── pages/
 │   ├── components/
-│   └── main.js / App.js
-├── .env.example
+│   └── main.jsx / App.jsx
 └── README.md
 
 ```
