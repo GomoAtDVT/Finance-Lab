@@ -1,10 +1,10 @@
 import {client} from '../index.js'
 
-export const DeleteExpenseController = (req, res) => {
+export const DeleteTransactionController = (req, res) => {
     const user_id = req.user.id;
     const { id } = req.params;
 
-    const query = "DELETE FROM expenses WHERE id = $1";
+    const query = "DELETE FROM transactions WHERE id = $1";
     const values = [ id ]
 
     client.query(query, values, (err, results) => {
