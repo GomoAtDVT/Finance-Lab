@@ -23,10 +23,7 @@ export default function MonthlyExpenses() {
                 className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
               >
                 <li>
-                  <button onClick={toExpense}>Update</button>
-                </li>
-                <li>
-                  <a>View</a>
+                  <button onClick={toExpense}>More</button>
                 </li>
               </ul>
             </div>

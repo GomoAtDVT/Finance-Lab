@@ -1,33 +1,30 @@
 import { useState, useRef } from "react";
-
-export default function Expenses() {
+export default function Income() {
     const [editIdx, setEditIdx] = useState(null);
-    const modalRef = useRef(null);
-    const expenses = [
-        { amount: 120, category: "Food", name: "Kit-kat", date: "2025-07-28" },
-        { amount: 120, category: "Food", name: "LunchBar", date: "2025-07-28" },
-        { amount: 50, category: "Transport", name: "Bus", date: "2025-07-27" },
-        { amount: 200, category: "Shopping", name: "Prada Bag", date: "2025-07-26" },
-    ]
-    const openModal = (idx) => {
-        setEditIdx(idx);
-        modalRef.current.showModal();
-    };
-
-    const closeModal = () => {
-        setEditIdx(null);
-        modalRef.current.close();
-    };
+        const modalRef = useRef(null);
+    const incomes = [
+        { amount: 12000, category: "Salary", name: "Job", date: "2025-07-28" },
+        { amount: 2000, category: "Freelance", name: "Taxi Driver", date: "2025-07-27" },
+    ];
+        
+        const openModal = (idx) => {
+            setEditIdx(idx);
+            modalRef.current.showModal();
+        };
+    
+        const closeModal = () => {
+            setEditIdx(null);
+            modalRef.current.close();
+        };
     return (
         <>
-        
         <section className="flex flex-row justify-around items-center h-screen bg-gray-200">
             <section>
-                <h1 className="text-2xl font-bold p-4">Add Expenses</h1>
+                <h1 className="text-2xl font-bold p-4">Add incomes</h1>
             <form action="" className="flex flex-col w-100 gap-4 p-4 border-2 rounded-lg shadow-md bg-white">
                 <div className="flex flex-col p-2">
-                    <label htmlFor="">Expense Name</label>
-                    <input type="text" placeholder="Expense Name" className="input input-bordered w-full  " />
+                    <label htmlFor="">Income Name</label>
+                    <input type="text" placeholder="income Name" className="input input-bordered w-full  " />
                 </div>
                 <div className="flex flex-col p-2">
                     <label htmlFor="">Amount</label>
@@ -37,10 +34,8 @@ export default function Expenses() {
                     <label htmlFor="">Category</label>
                     <select name="" id="" className="select select-bordered w-full " >
                         <option value="pick a category" disabled>select a category</option>
-                        <option value="Groceries">Groceries</option>
-                        <option value="Travel">Travel</option>
-                        <option value="Essentials">Essentials</option>
-                        <option value="Shopping">Shopping</option>
+                        <option value="Salary">Salary</option>
+                        <option value="FreeLance">FreeLance</option>
                         <option value="Other">Other</option>
                     </select>
                 </div>
@@ -48,7 +43,7 @@ export default function Expenses() {
             </form>
            </section>
             <section className="w-180" >
-                <h1 className="text-2xl font-bold p-4">View/edit Expenses</h1>
+                <h1 className="text-2xl font-bold p-4">View/edit incomes</h1>
                 <div className="overflow-x-auto mt-4 border rounded-lg">
                 <table className="table table-zebra">
                     <thead >
@@ -62,13 +57,13 @@ export default function Expenses() {
                         </tr>
                     </thead>
                     <tbody>
-                        {expenses.map((expense, idx) => (
+                        {incomes.map((income, idx) => (
                             <tr key={idx} >
                                 <th>{idx + 1}</th>
-                                <td>{expense.amount}</td>
-                                <td>{expense.category}</td>
-                                <td>{expense.name}</td>
-                                <td>{expense.date}</td>
+                                <td>{income.amount}</td>
+                                <td>{income.category}</td>
+                                <td>{income.name}</td>
+                                <td>{income.date}</td>
                                 <td>
                                     <div className="dropdown dropdown-end">
                                         <div tabIndex={0} role="button" className=" m-1">
@@ -91,26 +86,24 @@ export default function Expenses() {
                 </div>
                 <dialog ref={modalRef} className="modal" onClose={closeModal}>
                     <div className="modal-box">
-                        <h3 className="font-bold text-lg">Edit Expense</h3>
+                        <h3 className="font-bold text-lg">Edit income</h3>
                         {editIdx !== null && (
                             <section>
                             <form action="" className="flex flex-col w-full gap-4 p-4   shadow-md bg-white">
                 <div className="flex flex-col p-2">
-                    <label htmlFor="">Expense Name</label>
-                    <input type="text" placeholder="Expense Name" value={expenses[editIdx].name} className="input input-bordered w-full  " />
+                    <label htmlFor="">income Name</label>
+                    <input type="text" placeholder="income Name" value={incomes[editIdx].name} className="input input-bordered w-full  " />
                 </div>
                 <div className="flex flex-col p-2">
                     <label htmlFor="">Amount</label>
-                    <input type="number" placeholder="Amount" value={expenses[editIdx].amount} className="input input-bordered w-full  " />
+                    <input type="number" placeholder="Amount" value={incomes[editIdx].amount} className="input input-bordered w-full  " />
                 </div>
                 <div className="flex flex-col p-2">
                     <label htmlFor="">Category</label>
-                    <select name="" id="" className="select select-bordered w-full" defaultValue={expenses[editIdx].category} >
+                    <select name="" id="" className="select select-bordered w-full" defaultValue={incomes[editIdx].category} >
                         <option value="pick a category" disabled>select a category</option>
-                        <option value="Groceries">Groceries</option>
-                        <option value="Travel">Travel</option>
-                        <option value="Essentials">Essentials</option>
-                        <option value="Shopping">Shopping</option>
+                        <option value="Salary">Salary</option>
+                        <option value="FreeLance">FreeLance</option>
                         <option value="Other">Other</option>
                     </select>
                 </div>
@@ -127,5 +120,5 @@ export default function Expenses() {
 
         </section>
         </>
-    )
+    );
 }

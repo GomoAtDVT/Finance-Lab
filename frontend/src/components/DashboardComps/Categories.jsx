@@ -1,4 +1,4 @@
-import DoughnutChart from "./Charts/DounutChart";
+import DoughnutChart from "./Charts/DoughnutChart";
 
 export default function Categories({ labels, dataValues }) {
     return(

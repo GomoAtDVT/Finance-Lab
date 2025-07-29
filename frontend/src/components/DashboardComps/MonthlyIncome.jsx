@@ -1,4 +1,10 @@
-export default function Income() {
+import { useNavigate } from "react-router-dom"
+
+export default function MonthlyIncome() {
+  const navigate = useNavigate();
+  function toIncome() {
+    navigate("/income");
+  }
     return(
         <>
         <section className="p-4 flex flex-row justify-between">
@@ -17,11 +23,9 @@ export default function Income() {
                 className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
               >
                 <li>
-                  <a>Update</a>
+                  <button onClick={toIncome}>More</button>
                 </li>
-                <li>
-                  <a>View</a>
-                </li>
+                
               </ul>
             </div>
           </button>

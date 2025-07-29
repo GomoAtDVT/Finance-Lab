@@ -1,11 +1,11 @@
 import AccountBalance from "../../components/DashboardComps/AccountBalance";
 import Categories from "../../components/DashboardComps/Categories";
-import Income from "../../components/DashboardComps/Income";
 import MonthlyExpenses from "../../components/DashboardComps/MonthlyExpenses";
 import MonthlyExpensesChart from "../../components/DashboardComps/MonthlyExpensesChart";
 import RecentExpenses from "../../components/DashboardComps/RecentExpenses";
 import Navigation from "../../components/navigation/Navigation";
 import Sidebar from "../../components/SideBarComp/Sidebar";
+import MonthlyIncome from "../../components/DashboardComps/MonthlyIncome";
 
 
 export default function Dashboard(){
@@ -23,7 +23,7 @@ export default function Dashboard(){
             <MonthlyExpenses />
         </div>
         <div className=" rounded shadow-2xs bg-linear-to-t from-green-200 to-green-50 h-40 col-3 row-1">
-            <Income />
+            <MonthlyIncome />
         </div>
 
         </section>
