@@ -1,11 +1,8 @@
 import { useState, useRef } from "react";
-export default function Income() {
+export default function Income({transactions}) {
     const [editIdx, setEditIdx] = useState(null);
         const modalRef = useRef(null);
-    const incomes = [
-        { amount: 12000, category: "Salary", name: "Job", date: "2025-07-28" },
-        { amount: 2000, category: "Freelance", name: "Taxi Driver", date: "2025-07-27" },
-    ];
+    
         
         const openModal = (idx) => {
             setEditIdx(idx);
@@ -57,7 +54,7 @@ export default function Income() {
                         </tr>
                     </thead>
                     <tbody>
-                        {incomes.map((income, idx) => (
+                        {transactions.incomes.map((income, idx) => (
                             <tr key={idx} >
                                 <th>{idx + 1}</th>
                                 <td>{income.amount}</td>
@@ -92,15 +89,15 @@ export default function Income() {
                             <form action="" className="flex flex-col w-full gap-4 p-4   shadow-md bg-white">
                 <div className="flex flex-col p-2">
                     <label htmlFor="">income Name</label>
-                    <input type="text" placeholder="income Name" value={incomes[editIdx].name} className="input input-bordered w-full  " />
+                    <input type="text" placeholder="income Name" value={transactions.incomes[editIdx].name} className="input input-bordered w-full  " />
                 </div>
                 <div className="flex flex-col p-2">
                     <label htmlFor="">Amount</label>
-                    <input type="number" placeholder="Amount" value={incomes[editIdx].amount} className="input input-bordered w-full  " />
+                    <input type="number" placeholder="Amount" value={transactions.incomes[editIdx].amount} className="input input-bordered w-full  " />
                 </div>
                 <div className="flex flex-col p-2">
                     <label htmlFor="">Category</label>
-                    <select name="" id="" className="select select-bordered w-full" defaultValue={incomes[editIdx].category} >
+                    <select name="" id="" className="select select-bordered w-full" defaultValue={transactions.incomes[editIdx].category} >
                         <option value="pick a category" disabled>select a category</option>
                         <option value="Salary">Salary</option>
                         <option value="FreeLance">FreeLance</option>

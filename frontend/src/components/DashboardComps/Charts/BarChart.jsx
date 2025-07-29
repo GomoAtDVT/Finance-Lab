@@ -4,13 +4,13 @@ import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Lege
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-const BarChart = ({ labels, dataValues }) => {
+const BarChart = ({ transactions , user, setUser }) => {
   const data = {
-    labels,
+    labels: transactions.slice(0, 5).map(transaction => transaction.name),
     datasets: [
       {
         label: 'Expenses',
-        data: dataValues,
+        data: transactions.map(transaction => transaction.amount),
         backgroundColor: 'rgba(255, 99, 132, 0.6)',
       },
     ],

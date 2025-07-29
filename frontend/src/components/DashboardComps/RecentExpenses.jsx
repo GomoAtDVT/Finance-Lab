@@ -1,16 +1,5 @@
-export default function RecentExpenses() {
-    // Example data, replace with your actual expenses data
-    const expenses = [
-        { amount: 120, category: "Food", date: "2025-07-28" },
-        { amount: 50, category: "Transport", date: "2025-07-27" },
-        { amount: 200, category: "Shopping", date: "2025-07-26" },
-        { amount: 120, category: "Food", date: "2025-07-28" },
-        { amount: 50, category: "Transport", date: "2025-07-27" },
-        { amount: 200, category: "Shopping", date: "2025-07-26" },
-        { amount: 120, category: "Food", date: "2025-07-28" },
-        { amount: 50, category: "Transport", date: "2025-07-27" },
-        { amount: 200, category: "Shopping", date: "2025-07-26" },
-    ];
+export default function RecentExpenses({transactions}) {
+    
 
     return (
         <>
@@ -27,7 +16,7 @@ export default function RecentExpenses() {
                         </tr>
                     </thead>
                     <tbody>
-                        {expenses.map((expense, idx) => (
+                        {transactions.map((expense, idx) => (
                             <tr key={idx} className="">
                                 <td className="px-4 py-2 ">{idx + 1}</td>
                                 <td className="px-4 py-2 border-x">{expense.amount}</td>

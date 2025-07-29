@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../SideBarComp/Sidebar";
 
-export default function Navigation() {
+export default function Navigation({user, setUser}) {
   const navigate = useNavigate();
   return (
     <>
@@ -9,7 +9,7 @@ export default function Navigation() {
         <section className="flex flex-row gap-10 justify-around">
             <Sidebar />
         <div className="flex flex-col px-4">
-          <p className="text-xl font-semibold">Hey Greg</p>
+          <p className="text-xl font-semibold">Hey {user.name.split(" ")[0]}</p>
           <p>Track all your finances here</p>
         </div>
         </section>
@@ -39,7 +39,7 @@ export default function Navigation() {
           <div>
             <div className="avatar avatar-placeholder" onClick={() => navigate("/profile")}>
   <div className="bg-neutral text-neutral-content w-10 rounded-full">
-    <span className="text-xs">G</span>
+    <span className="text-xs">{user.name.slice(0, 1)}</span>
   </div>
 </div>
           </div>
