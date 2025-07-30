@@ -1,11 +1,24 @@
-import { useState, useRef } from "react";
-export default function Income({transactions}) {
+import axios from "axios";
+import { useState, useRef, useEffect } from "react";
+export default function Income() {
     const [editIdx, setEditIdx] = useState(null);
-        const modalRef = useRef(null);
+    const [incomes, setIncomes] = useState([]);
+    const [editForm, setEditForm] = useState({
+    name: "",
+    amount: "",
+    category: ""
+});
+    const modalRef = useRef(null);
     
-        
+    
+        // onChange({...transactions, name: event.target.value});
         const openModal = (idx) => {
             setEditIdx(idx);
+            setEditForm({
+        name: incomes[idx].name,
+        amount: incomes[idx].amount,
+        category: incomes[idx].category
+    });
             modalRef.current.showModal();
         };
     
@@ -13,23 +26,65 @@ export default function Income({transactions}) {
             setEditIdx(null);
             modalRef.current.close();
         };
+ async function SubmitIncome(event){
+    try{
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+        
+        const response = await axios.post('http://localhost:5000/api/transactions/incomes', {
+            name: event.get("name"),
+            amount: event.get("amount"),
+            type: "income",
+            category: event.get("category"),
+        })
+        console.log(response);
+    } catch (error) {
+        console.error("Error submitting income:", error);
+    }
+ }
+
+ async function GetIncome(){
+     axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+     let IncomeResponse = await axios.get('http://localhost:5000/api/transactions/incomes')
+     setIncomes(IncomeResponse.data.myIncome);
+ }
+
+ useEffect(() => {
+    GetIncome();
+ }, []);
+
+ async function EditIncome() {
+    try{
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+        const response = await axios.patch(`http://localhost:5000/api/transactions/${incomes[editIdx].id}`, {
+            name: editForm.name,
+                amount: editForm.amount,
+                type: "income",
+                category: editForm.category,
+        })
+        await GetIncome();
+        closeModal();
+    }catch(error){
+        console.error("Error editing income:", error);
+    }
+ }
+
     return (
         <>
         <section className="flex flex-row justify-around items-center h-screen bg-gray-200">
             <section>
                 <h1 className="text-2xl font-bold p-4">Add incomes</h1>
-            <form action="" className="flex flex-col w-100 gap-4 p-4 border-2 rounded-lg shadow-md bg-white">
+            <form action={SubmitIncome} className="flex flex-col w-100 gap-4 p-4 border-2 rounded-lg shadow-md bg-white">
                 <div className="flex flex-col p-2">
                     <label htmlFor="">Income Name</label>
-                    <input type="text" placeholder="income Name" className="input input-bordered w-full  " />
+                    <input type="text" placeholder="income Name" name="name" className="input input-bordered w-full  " />
                 </div>
                 <div className="flex flex-col p-2">
                     <label htmlFor="">Amount</label>
-                    <input type="number" placeholder="Amount" className="input input-bordered w-full  " />
+                    <input type="number" placeholder="Amount" name="amount" className="input input-bordered w-full  " />
                 </div>
                 <div className="flex flex-col p-2">
                     <label htmlFor="">Category</label>
-                    <select name="" id="" className="select select-bordered w-full " >
+                    <select name="category" id="" className="select select-bordered w-full " >
                         <option value="pick a category" disabled>select a category</option>
                         <option value="Salary">Salary</option>
                         <option value="FreeLance">FreeLance</option>
@@ -54,13 +109,13 @@ export default function Income({transactions}) {
                         </tr>
                     </thead>
                     <tbody>
-                        {transactions.incomes.map((income, idx) => (
+                        {incomes.map((income, idx) => (
                             <tr key={idx} >
                                 <th>{idx + 1}</th>
                                 <td>{income.amount}</td>
                                 <td>{income.category}</td>
                                 <td>{income.name}</td>
-                                <td>{income.date}</td>
+                                <td>{income.updated_at.slice(0, 10)}</td>
                                 <td>
                                     <div className="dropdown dropdown-end">
                                         <div tabIndex={0} role="button" className=" m-1">
@@ -86,23 +141,37 @@ export default function Income({transactions}) {
                         <h3 className="font-bold text-lg">Edit income</h3>
                         {editIdx !== null && (
                             <section>
-                            <form action="" className="flex flex-col w-full gap-4 p-4   shadow-md bg-white">
+                            <form action={EditIncome} className="flex flex-col w-full gap-4 p-4   shadow-md bg-white">
                 <div className="flex flex-col p-2">
                     <label htmlFor="">income Name</label>
-                    <input type="text" placeholder="income Name" value={transactions.incomes[editIdx].name} className="input input-bordered w-full  " />
-                </div>
+<input
+    type="text"
+    placeholder="income Name"
+    className="input input-bordered w-full"
+    value={editForm.name}
+    onChange={e => setEditForm({ ...editForm, name: e.target.value })}
+/>                </div>
                 <div className="flex flex-col p-2">
                     <label htmlFor="">Amount</label>
-                    <input type="number" placeholder="Amount" value={transactions.incomes[editIdx].amount} className="input input-bordered w-full  " />
-                </div>
+<input
+    type="number"
+    placeholder="Amount"
+    className="input input-bordered w-full"
+    value={editForm.amount}
+    onChange={e => setEditForm({ ...editForm, amount: e.target.value })}
+/>                </div>
                 <div className="flex flex-col p-2">
                     <label htmlFor="">Category</label>
-                    <select name="" id="" className="select select-bordered w-full" defaultValue={transactions.incomes[editIdx].category} >
-                        <option value="pick a category" disabled>select a category</option>
-                        <option value="Salary">Salary</option>
-                        <option value="FreeLance">FreeLance</option>
-                        <option value="Other">Other</option>
-                    </select>
+                    <select
+    className="select select-bordered w-full"
+    value={editForm.category}
+    onChange={e => setEditForm({ ...editForm, category: e.target.value })}
+>
+    <option value="pick a category" disabled>select a category</option>
+    <option value="Salary">Salary</option>
+    <option value="FreeLance">FreeLance</option>
+    <option value="Other">Other</option>
+</select>
                 </div>
                 <button className="btn">Submit</button>
             </form>

@@ -14,7 +14,7 @@ export default function AccountBalance({transactions}) {
         <section className="p-4 gap-4 flex flex-row justify-between ">
 
         <div className="flex flex-col gap-4">
-            <h1 className="text-xl items-start"> <i class="bi bi-wallet"></i> &nbsp; Account Balance</h1>
+            <h1 className="text-xl items-start"> <i className="bi bi-wallet"></i> &nbsp; Account Balance</h1>
         <p className="text-3xl">R {balance}</p></div>
         
         </section>

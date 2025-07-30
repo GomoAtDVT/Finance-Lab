@@ -27,7 +27,7 @@ export default function MonthlyExpenses({transactions}) {
                 className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
               >
                 <li>
-                  <button onClick={toExpense}>More</button>
+                  <a onClick={toExpense}>More</a>
                 </li>
               </ul>
             </div>

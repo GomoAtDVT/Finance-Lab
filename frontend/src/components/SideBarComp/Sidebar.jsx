@@ -17,9 +17,9 @@ export default function Sidebar() {
           ></label>
           <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
             {/* Sidebar content here */}
-            <p className="flex items-center justify-center my-4 ">
+            <div className="flex items-center justify-center my-4 ">
                 <p className="text-xl font-bold">Finance Lab</p>
-            </p>
+            </div>
             <li>
               <a>Dashboard</a>
             </li>

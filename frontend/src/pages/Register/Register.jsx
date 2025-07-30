@@ -1,7 +1,24 @@
 // import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { use } from 'react';
 export default function Register() {
     const navigate = useNavigate();
+
+    const createUser = async (event) => {
+    try{
+      const response = await axios.post('http://localhost:5000/api/register',{
+        username: event.get("username"),
+        email: event.get("email"),
+        date_of_birth: event.get("DOB"),
+        password: event.get("password"),
+      })
+      console.log(response.data)
+       navigate('/login'); 
+    }catch (error){
+      console.error("Error creating user:", error);
+    }
+  }
     
     function register(event){
         const userPassword = event.get("password");
@@ -20,7 +37,7 @@ if (userPassword !== confirmPassword) {
   return (
     <>
       <section className='flex justify-center items-center h-screen'>
-        <form action={register}  className="">
+        <form action={createUser}  className="">
           
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4 ">
             <legend className="fieldset-legend">Register</legend>
@@ -32,7 +49,7 @@ if (userPassword !== confirmPassword) {
             <input type="email" className="input" name='email' placeholder="Email" required/>
 
             <label className="label">Date of birth</label>
-            <input type="date" className="input" name='DOB' placeholder="Email" />
+            <input type="date" className="input" name='DOB'  />
 
             <label className="label">Password</label>
             <input type="password" className="input" name='password' placeholder="Password" required/>
@@ -42,6 +59,7 @@ if (userPassword !== confirmPassword) {
 
             <button className="btn btn-neutral mt-4">Register</button>
           </fieldset>
+        <a className='flex justify-center' href="/login">Already have an account? <span className='underline'>Login here</span></a>
         </form>
       </section>
     </>

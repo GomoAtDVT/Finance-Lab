@@ -27,11 +27,11 @@ export const ViewTransactionsIncomeController = (req, res) => {
 
    client.query(query, values, (err, results)=> {
        if(err){
-           res.json({message : err});
+           res.json({theError : err});
        }else{
            const amountList = results.rows.map(all => Number(all.amount));
             const totalAmount = amountList.reduce((acc, curr) => acc + curr, 0);
-           res.json({"my income" : results.rows, totalAmount : totalAmount});
+           res.json({"myIncome" : results.rows, totalAmount : totalAmount});
        }
    })
 }
