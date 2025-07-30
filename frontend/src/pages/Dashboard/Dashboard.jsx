@@ -15,25 +15,25 @@ export default function Dashboard({transactions, user, setUser}) {
         <section className="flex flex-col h-max min-h-screen bg-gray-100 ">
         <section className='grid grid-rows-1 grid-cols-3 gap-4  p-4'>
         <div className=" rounded shadow-2xs bg-linear-to-t from-blue-200 to-blue-50 h-40 col-1 row-1">
-            <AccountBalance transactions={transactions}/>
+            <AccountBalance />
         </div>
         <div className=" rounded shadow-2xs bg-linear-to-t from-red-200 to-red-50 h-40 col-2 row-1">
-            <MonthlyExpenses transactions={transactions.expenses}/>
+            <MonthlyExpenses />
         </div>
         <div className=" rounded shadow-2xs bg-linear-to-t from-green-200 to-green-50 h-40 col-3 row-1">
-            <MonthlyIncome transactions={transactions.incomes}/>
+            <MonthlyIncome />
         </div>
 
         </section>
         <section className="grid grid-rows-2 grid-cols-2 gap-4 p-4">
         <div className="rounded shadow-2xs bg-white col-1 row-1 ">
-           <MonthlyExpensesChart transactions={transactions.expenses} user={user} setUser={setUser}/>
+           <MonthlyExpensesChart />
         </div>
         <div className="rounded shadow-2xs bg-white col-2 row-1">
-            <Categories transactions={transactions.expenses}  user={user} setUser={setUser}/>
+            <Categories />
         </div>
         <div className="col-span-2 rounded shadow-2xs bg-white row-2">
-            <RecentExpenses transactions={transactions.expenses}/>
+            <RecentExpenses />
         </div>
         </section>
         </section>

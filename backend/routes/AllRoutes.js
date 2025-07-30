@@ -54,5 +54,11 @@ AllRoutes.delete("/transactions/:id", AuthTokenMiddleware, DeleteTransactionCont
 //endpoint to refresh the access token
 AllRoutes.post("/refresh", RefreshController);
 
+// AllRoutes.get('/user/me', authenticateToken, async (req, res) => {
+//   // req.user should be set by your auth middleware
+//   const userId = req.user.id;
+//   const result = await client.query('SELECT * FROM users WHERE id = $1', [userId]);
+//   res.json({ user: result.rows[0] });
+// });
 // goals
  

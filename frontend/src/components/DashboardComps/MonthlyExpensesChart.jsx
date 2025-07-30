@@ -1,6 +1,6 @@
 import BarChart from "./Charts/BarChart";
 
-export default function MonthlyExpensesChart({ transactions, user, setUser }) {
+export default function MonthlyExpensesChart() {
   return (
     <>
       <section className="p-4 flex flex-col justify-between">
@@ -25,7 +25,7 @@ export default function MonthlyExpensesChart({ transactions, user, setUser }) {
             </div>
           </button>
         </div>
-        <BarChart transactions={transactions} user={user} setUser={setUser}/>
+        <BarChart />
       </section>
     </>
   );

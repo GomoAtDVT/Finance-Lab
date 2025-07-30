@@ -1,15 +1,34 @@
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../SideBarComp/Sidebar";
+import { useEffect, useState } from "react";
+// import jwt_decode from "jwt-decode";
+import axios from "axios";
 
-export default function Navigation({user, setUser}) {
+export default function Navigation() {
   const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState([])
+
+  async function fetchUser() {
+    try{
+      axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
+      const response = await axios.get('http://localhost:5000/api/user/16');
+setCurrentUser(response.data.user);
+    } catch (error){
+      console.error("Error fetching user:", error);
+    }
+  }
+  useEffect(()=> {
+    fetchUser();
+  },[])
+  console.log( currentUser);
   return (
     <>
       <section className="flex flex-row p-4 justify-between items-center">
         <section className="flex flex-row gap-10 justify-around">
-            <Sidebar />
-        <div className="flex flex-col px-4">
-          <p className="text-xl font-semibold">Hey {user.name.split(" ")[0]}</p>
+            {/* <Sidebar /> */}
+        <div className="flex flex-col px-4">          
+
+          <p className="text-xl font-semibold">Hey {currentUser.map((user) => user.username.split(" ")[0])}</p>
           <p>Track all your finances here</p>
         </div>
         </section>
@@ -39,7 +58,7 @@ export default function Navigation({user, setUser}) {
           <div>
             <div className="avatar avatar-placeholder" onClick={() => navigate("/profile")}>
   <div className="bg-neutral text-neutral-content w-10 rounded-full">
-    <span className="text-xs">{user.name.slice(0, 1)}</span>
+    <span className="text-xs">{currentUser.map((user) => user.username.slice(0, 1))}</span>
   </div>
 </div>
           </div>

@@ -12,7 +12,7 @@ export const ViewTransactionsController = (req, res) => {
        if(err){
            res.json({message : err});
        }else{
-           res.json({"my expenses" : results.rows});
+           res.json({"myTransactions" : results.rows});
        }
    })
 }
@@ -52,7 +52,7 @@ export const ViewTransactionsExpenseController = (req, res) => {
        }else{
            const amountList = results.rows.map(all => Number(all.amount));
             const totalAmount = amountList.reduce((acc, curr) => acc + curr, 0);
-           res.json({"my expenses" : results.rows, totalAmount : totalAmount});
+           res.json({"myExpenses" : results.rows, totalAmount : totalAmount});
        }
    })
 }

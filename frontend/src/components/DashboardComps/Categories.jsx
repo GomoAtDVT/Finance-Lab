@@ -1,12 +1,12 @@
 import DoughnutChart from "./Charts/DoughnutChart";
 
-export default function Categories({transactions, user, setUser }) {
+export default function Categories() {
     return(
         <>
         <section className="p-4 flex flex-row justify-between">
         <section className="flex flex-col w-150 ">
             <h1 className="text-xl">Categories</h1>
-            <div  className="ml-40 m-[-3rem]"><DoughnutChart transactions={transactions} user={user} setUser={setUser}/></div>
+            <div  className="ml-40 m-[-3rem]"><DoughnutChart /></div>
         </section>
         <div>
         <button>
