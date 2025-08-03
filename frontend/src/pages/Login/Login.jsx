@@ -10,8 +10,9 @@ export default function Login() {
           password: event.get("password"),
         }
       )
-      console.log(response);
+      console.log(response.data);
       localStorage.setItem('token', response.data.userToken)
+      localStorage.setItem('email', event.get("email"));
       
         navigate('/dashboard'); 
       }catch(error) {

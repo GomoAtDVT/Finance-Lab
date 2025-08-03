@@ -6,12 +6,14 @@ import axios from 'axios';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const DoughnutChart = () => {
+const CategoryDoughnutChart = () => {
   const [monthlyTransactions, setMonthlyTransactions] = useState([]);
   async function fetchTransaction() {
     try{axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`;
-    let transactions = await axios.get('http://localhost:5000/api/transactions')
-    setMonthlyTransactions(transactions.data.myTransactions);
+     let IncomeResponse = await axios.get(
+      "http://localhost:5000/api/transactions/incomes"
+    );
+    setMonthlyTransactions(IncomeResponse.data.myIncome);
   } catch (error) {
       console.error("Error fetching monthly income:", error);
     }
@@ -21,14 +23,14 @@ const DoughnutChart = () => {
       fetchTransaction();
   },[]);
 
-  let arr = monthlyTransactions.map(transaction => transaction.category);
+  let arr = monthlyTransactions.map(transaction => `${transaction.category} - R${transaction.amount}`);
   let newArr = arr.filter((item, index) => arr.indexOf(item) === index);
   const data = {
-    labels: newArr.slice(0,5),
+    labels: arr,
     datasets: [
       {
         label: 'Categories',
-        data: monthlyTransactions.slice(0,5).map(transaction => transaction.amount),
+        data: monthlyTransactions.map(transaction => transaction.amount),
         backgroundColor: [
           '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
         ],
@@ -46,4 +48,4 @@ const DoughnutChart = () => {
   return <Doughnut data={data} options={options} />;
 };
 
-export default DoughnutChart;
+export default CategoryDoughnutChart;

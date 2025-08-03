@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import DoughnutChart from "./Charts/DoughnutChart";
 
 export default function Categories() {
+  const navigate = useNavigate();
+
+  function toChart() {
+    navigate("/categoryChart");
+  }
     return(
         <>
         <section className="p-4 flex flex-row justify-between">
@@ -19,10 +25,7 @@ export default function Categories() {
                 className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
               >
                 <li>
-                  <a>check</a>
-                </li>
-                <li>
-                  <a>delete</a>
+                  <a onClick={toChart}>check</a>
                 </li>
               </ul>
             </div>

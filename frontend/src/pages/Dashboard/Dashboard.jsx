@@ -5,22 +5,25 @@ import MonthlyExpensesChart from "../../components/DashboardComps/MonthlyExpense
 import RecentExpenses from "../../components/DashboardComps/RecentExpenses";
 import Navigation from "../../components/navigation/Navigation";
 import MonthlyIncome from "../../components/DashboardComps/MonthlyIncome";
+import axios from "axios";
+import { useEffect } from "react";
 
 
-export default function Dashboard({transactions, user, setUser}) {
+export default function Dashboard() {
+    
     
     return (
         <>
-        <Navigation user={user} setUser={setUser}/> 
+        <Navigation/> 
         <section className="flex flex-col h-max min-h-screen bg-gray-100 ">
         <section className='grid grid-rows-1 grid-cols-3 gap-4  p-4'>
-        <div className=" rounded shadow-2xs bg-linear-to-t from-blue-200 to-blue-50 h-40 col-1 row-1">
+        <div className=" rounded shadow-2xs bg-blue-200 h-40 col-1 row-1">
             <AccountBalance />
         </div>
-        <div className=" rounded shadow-2xs bg-linear-to-t from-red-200 to-red-50 h-40 col-2 row-1">
+        <div className=" rounded shadow-2xs bg-red-300 h-40 col-2 row-1">
             <MonthlyExpenses />
         </div>
-        <div className=" rounded shadow-2xs bg-linear-to-t from-green-200 to-green-50 h-40 col-3 row-1">
+        <div className=" rounded shadow-2xs bg-green-300 h-40 col-3 row-1">
             <MonthlyIncome />
         </div>
 

@@ -1,6 +1,12 @@
-import BarChart from "./Charts/BarChart";
+import { useNavigate } from "react-router-dom";
+import BarChart from "./Charts/BarChart.jsx";
 
 export default function MonthlyExpensesChart() {
+  const navigate = useNavigate();
+
+  function toChart() {
+    navigate("/expensesChart");
+  }
   return (
     <>
       <section className="p-4 flex flex-col justify-between">
@@ -16,10 +22,7 @@ export default function MonthlyExpensesChart() {
                 className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
               >
                 <li>
-                  <a>check</a>
-                </li>
-                <li>
-                  <a>delete</a>
+                  <a onClick={toChart}>check</a>
                 </li>
               </ul>
             </div>

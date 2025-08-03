@@ -1,7 +1,7 @@
 import express from "express";
 import { RegisterUserController } from "../controllers/RegisterUserController.js";
 import { LoginUserController } from "../controllers/LoginUserController.js";
-import { ViewUserController } from "../controllers/ViewUserController.js";
+import { ViewUserController, ViewUserByEmailController } from "../controllers/ViewUserController.js";
 import { EditUserController } from "../controllers/EditUserController.js";
 import { DeleteUserController } from "../controllers/DeleteUserController.js";
 import { AddTransactionController } from "../controllers/AddTransactionController.js";
@@ -21,6 +21,8 @@ AllRoutes.post("/login", LoginUserController);
 
 //endpoint to check out my profile
 AllRoutes.get("/user/:id", AuthTokenMiddleware , ViewUserController);
+//endpoint to view user by email
+AllRoutes.get("/user", AuthTokenMiddleware , ViewUserByEmailController);
 
 //endpoint to edit my profile
 AllRoutes.patch("/user/:id", AuthTokenMiddleware , EditUserController);

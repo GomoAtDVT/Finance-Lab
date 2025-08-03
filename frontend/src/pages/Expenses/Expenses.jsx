@@ -1,5 +1,19 @@
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
+import Navigation from "../../components/navigation/Navigation";
+
+/**
+ * The Expenses component manages and displays a list of user expenses.
+ * It provides functionality to add, edit, and delete expenses.
+ * The component displays a form for adding new expenses and a table
+ * for viewing and editing existing expenses. It uses a modal for editing
+ * expense details. The component fetches expense data from a server and
+ * updates the UI accordingly. It handles authentication via token stored
+ * in local storage for API requests.
+ * 
+ * Opens the modal for editing an expense
+ * @param {number} idx - Index of the expense to edit
+ */
 
 export default function Expenses() {
      const [editIdx, setEditIdx] = useState(null);
@@ -95,8 +109,8 @@ export default function Expenses() {
 
     return (
         <>
-        
-        <section className="flex flex-row justify-around items-center h-screen bg-gray-200">
+        <Navigation />
+        <section className="flex flex-row justify-around items-center p-4 pb-41  bg-gray-200">
             <section>
                 <h1 className="text-2xl font-bold p-4">Add Expenses</h1>
             <form action={SubmitExpense} className="flex flex-col w-100 gap-4 p-4 border-2 rounded-lg shadow-md bg-white">
@@ -122,10 +136,10 @@ export default function Expenses() {
                 <button className="btn">Submit</button>
             </form>
            </section>
-            <section className="w-180" >
+            <section className="w-200 p-4" >
                 <h1 className="text-2xl font-bold p-4">View/edit Expenses</h1>
-                <div className="overflow-x-auto mt-4 border rounded-lg">
-                <table className="table table-zebra">
+                <div className="overflow-x-auto mt-4 border rounded-lg overflow-y-scroll h-90">
+                <table className="table table-zebra ">
                     <thead >
                         <tr className="bg-gray-200 " >
                             <th className=" ">#</th>
@@ -145,13 +159,13 @@ export default function Expenses() {
                                 <td>{expense.name}</td>
                                 <td>{expense.updated_at.slice(0, 10)}</td>
                                 <td>
-                                    <div className="dropdown dropdown-end">
+                                    <div className="dropdown dropdown-end ">
                                         <div tabIndex={0} role="button" className=" m-1">
                                             <i className="bi bi-three-dots"></i>
                                         </div>
                                         <ul
                                             tabIndex={0}
-                                            className="dropdown-content menu bg-base-100 rounded-box z-4 w-52 p-2 shadow-sm">
+                                            className="dropdown-content menu bg-base-100 rounded-box z-999 relative w-52 p-2 shadow-sm">
                                             <li>
                                                 <button className="" onClick={() => openModal(idx)}>edit</button>
                                             </li>

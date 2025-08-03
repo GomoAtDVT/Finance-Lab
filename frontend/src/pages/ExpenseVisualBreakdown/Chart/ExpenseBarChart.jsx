@@ -6,7 +6,7 @@ import axios from 'axios';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
-export const BarChart = () => {
+export const ExpenseBarChart = () => {
   const [expenses, setExpenses] = useState([]);
      async function GetExpense() {
     axios.defaults.headers.common[
@@ -21,12 +21,12 @@ export const BarChart = () => {
     GetExpense();
   }, []);
   const data = {
-    labels: expenses.slice(0, 5).map(transaction => transaction.name),
+    labels: expenses.map(transaction => transaction.name),
     datasets: [
       {
         label: 'Expenses',
         data: expenses.map(transaction => transaction.amount),
-        backgroundColor: 'rgb(193, 18, 31)',
+        backgroundColor: 'rgba(255, 99, 132)',
         borderRadius: 25,
       },
     ],
@@ -42,4 +42,4 @@ export const BarChart = () => {
   return <Bar data={data} options={options} />;
 };
 
-export default BarChart;
+export default ExpenseBarChart;

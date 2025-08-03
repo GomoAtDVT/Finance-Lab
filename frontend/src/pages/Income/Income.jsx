@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useRef, useEffect } from "react";
+import Navigation from "../../components/navigation/Navigation";
 export default function Income() {
   const [editIdx, setEditIdx] = useState(null);
   const [incomes, setIncomes] = useState([]);
@@ -95,7 +96,8 @@ export default function Income() {
 
   return (
     <>
-      <section className="flex flex-row justify-around items-center h-screen bg-gray-200">
+    <Navigation />
+      <section className="flex flex-row justify-around items-center p-4 pb-41  bg-gray-200">
         <section>
           <h1 className="text-2xl font-bold p-4">Add incomes</h1>
           <form
@@ -138,9 +140,9 @@ export default function Income() {
             <button className="btn">Submit</button>
           </form>
         </section>
-        <section className="w-180">
+        <section className="w-200 p-4">
           <h1 className="text-2xl font-bold p-4">View/edit incomes</h1>
-          <div className="overflow-x-auto mt-4 border rounded-lg">
+          <div className="overflow-x-auto mt-4 border rounded-lg overflow-y-scroll min-h-90 h-max">
             <table className="table table-zebra">
               <thead>
                 <tr className="bg-gray-200 ">
