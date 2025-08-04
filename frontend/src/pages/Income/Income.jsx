@@ -97,12 +97,12 @@ export default function Income() {
   return (
     <>
     <Navigation />
-      <section className="flex flex-row justify-around items-center p-4 pb-41  bg-gray-200">
-        <section>
+      <section className="flex flex-row gap-6 justify-center items-center p-20.5 bg-gray-200">
+        <section className="flex flex-col  gap-4 p-4 mt-4  rounded-lg shadow-md bg-white">
           <h1 className="text-2xl font-bold p-4">Add incomes</h1>
           <form
             action={SubmitIncome}
-            className="flex flex-col w-100 gap-4 p-4 border-2 rounded-lg shadow-md bg-white"
+            className="flex flex-col w-100 gap-4 p-4 rounded-lg shadow-md bg-white"
           >
             <div className="flex flex-col p-2">
               <label htmlFor="">Income Name</label>
@@ -140,7 +140,7 @@ export default function Income() {
             <button className="btn">Submit</button>
           </form>
         </section>
-        <section className="w-200 p-4">
+        <section className="w-200 p-4 bg-white rounded-lg shadow-md mt-4">
           <h1 className="text-2xl font-bold p-4">View/edit incomes</h1>
           <div className="overflow-x-auto mt-4 border rounded-lg overflow-y-scroll min-h-90 h-max">
             <table className="table table-zebra">

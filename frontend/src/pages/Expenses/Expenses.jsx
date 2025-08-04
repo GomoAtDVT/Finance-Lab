@@ -110,10 +110,10 @@ export default function Expenses() {
     return (
         <>
         <Navigation />
-        <section className="flex flex-row justify-around items-center p-4 pb-41  bg-gray-200">
-            <section>
+        <section className="flex flex-row gap-6 justify-center items-center p-20.5 bg-gray-200">
+            <section className="flex flex-col  gap-4 p-4 mt-4  rounded-lg shadow-md bg-white">
                 <h1 className="text-2xl font-bold p-4">Add Expenses</h1>
-            <form action={SubmitExpense} className="flex flex-col w-100 gap-4 p-4 border-2 rounded-lg shadow-md bg-white">
+            <form action={SubmitExpense} className="flex flex-col w-100 gap-4 p-4  rounded-lg shadow-md bg-white">
                 <div className="flex flex-col p-2">
                     <label htmlFor="">Expense Name</label>
                     <input type="text" placeholder="Expense Name" name="name" className="input input-bordered w-full  " />
@@ -124,19 +124,24 @@ export default function Expenses() {
                 </div>
                 <div className="flex flex-col p-2">
                     <label htmlFor="">Category</label>
-                    <select name="category" id="" className="select select-bordered w-full " >
+                    <select name="category" id="" placeholder="Category" className="select select-bordered w-full " >
                         <option value="pick a category" disabled>select a category</option>
                         <option value="Groceries">Groceries</option>
-                        <option value="Travel">Travel</option>
+                        <option value="Transport">Transport</option>
                         <option value="Essentials">Essentials</option>
-                        <option value="Shopping">Shopping</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Digital & Connectivity">Digital & Connectivity</option>
+                        <option value="Loans">Loans</option>
+                        <option value="Restaurants">Restaurants</option>
+                        <option value="Fitness">Fitness</option>
+                        <option value="Entertainment">Entertainment</option>
                         <option value="Other">Other</option>
                     </select>
                 </div>
                 <button className="btn">Submit</button>
             </form>
            </section>
-            <section className="w-200 p-4" >
+            <section className="w-200 p-4 bg-white rounded-lg shadow-md mt-4" >
                 <h1 className="text-2xl font-bold p-4">View/edit Expenses</h1>
                 <div className="overflow-x-auto mt-4 border rounded-lg overflow-y-scroll h-90">
                 <table className="table table-zebra ">

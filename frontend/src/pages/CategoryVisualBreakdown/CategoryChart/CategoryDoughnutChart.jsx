@@ -32,7 +32,7 @@ const CategoryDoughnutChart = () => {
         label: 'Categories',
         data: monthlyTransactions.map(transaction => transaction.amount),
         backgroundColor: [
-          '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+         '#008000',  '#b7e4c7',  '#FFCE56', '#9ef01a', '#2d6a4f',
         ],
       },
     ],

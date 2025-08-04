@@ -25,7 +25,7 @@ const ExpCategoryDoughnutChart = () => {
       fetchTransaction();
   },[]);
 
-  let arr = monthlyTransactions.map(transaction => `${transaction.category} - R${transaction.amount}`);
+  let arr = monthlyTransactions.map(transaction => `${transaction.category}, ${transaction.name} - R${transaction.amount}`);
   let cashArr = monthlyTransactions.map(transaction => transaction.amount);
   const combo = `${arr} - ${cashArr}`
   let newArr = arr.filter((item, index) => arr.indexOf(item) === index);
@@ -36,7 +36,7 @@ const ExpCategoryDoughnutChart = () => {
         label: 'Categories',
         data: monthlyTransactions.map(transaction => transaction.amount),
         backgroundColor: [
-          '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+          '#d90429', '#ffbd00', '#ef233c', '#8d99ae', '#2b2d42',
         ],
       },
     ],
