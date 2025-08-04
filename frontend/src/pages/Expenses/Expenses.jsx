@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 import Navigation from "../../components/navigation/Navigation";
+import { useNavigate } from "react-router-dom";
 
 /**
  * The Expenses component manages and displays a list of user expenses.
@@ -24,6 +25,19 @@ export default function Expenses() {
     category: "",
   });
   const modalRef = useRef(null);
+  const navigate = useNavigate();
+   function toExpense(){
+        navigate("/expenses");
+    }
+    function toIncome(){
+        navigate("/income");
+    }
+    function toDashboard(){
+        navigate("/dashboard");
+    }
+    function toChart(){
+        navigate("/categoryChart");
+    }
 
   const openModal = (idx) => {
     setEditIdx(idx);
@@ -109,8 +123,14 @@ export default function Expenses() {
 
     return (
         <>
-        <Navigation />
-        <section className="flex flex-row gap-6 justify-center items-center p-20.5 bg-gray-200">
+        <Navigation /> 
+        <section className="flex flex-row">
+        <aside className="flex flex-col w-100 p-4 gap-10 pt-16 bg-gray-100 h-screen shadow-md">
+            <p onClick={toIncome} className="btn font-semibold italic border-b-1  ">Income Transactions</p>
+            <p onClick={toDashboard} className="btn  font-semibold italic border-b-1 p-4">Dashboard</p>
+            <p onClick={toChart} className="btn font-semibold italic border-b-1 p-4">Category Chart</p>
+        </aside>
+        <section className="flex flex-row gap-6 justify-center items-center  p-5.5 bg-gray-200">
             <section className="flex flex-col  gap-4 p-4 mt-4  rounded-lg shadow-md bg-white">
                 <h1 className="text-2xl font-bold p-4">Add Expenses</h1>
             <form action={SubmitExpense} className="flex flex-col w-100 gap-4 p-4  rounded-lg shadow-md bg-white">
@@ -228,6 +248,7 @@ export default function Expenses() {
                 </dialog>
            </section>
 
+        </section>
         </section>
         </>
     )

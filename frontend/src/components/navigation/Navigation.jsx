@@ -8,6 +8,15 @@ export default function Navigation() {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState([])
 
+async function logoutUser() {
+        try{
+            localStorage.removeItem('token');
+            localStorage.removeItem('email');
+            navigate('/login');
+        }catch (error){
+            console.error("Error logging out:", error);
+        }
+    }
 
   async function GetUser() {
     try {
@@ -15,7 +24,6 @@ export default function Navigation() {
               const response = await axios.get('http://localhost:5000/api/user', {
                   email: localStorage.getItem('email')
               });
-              console.log(response)
               setCurrentUser(response.data);
           } catch (error) {
               console.error("Error fetching user:", error);
@@ -33,7 +41,7 @@ export default function Navigation() {
     <>
       <section className="flex flex-row p-4 justify-between items-center">
         <section className="flex flex-row gap-10 justify-around">
-            {/* <Sidebar /> */}
+       
         <div className="flex flex-col px-4">          
 
           <p className="text-xl font-semibold">Hey { userIntro }</p>
@@ -42,29 +50,13 @@ export default function Navigation() {
         </section>
         <section className="flex flex-row gap-4 items-center">
           
-          {/* <div>
-            <label className="input">
-              <svg
-                className="h-[1em] opacity-50"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2.5"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="m21 21-4.3-4.3"></path>
-                </g>
-              </svg>
-              <input type="search" required placeholder="Search" />
-            </label>
-          </div> */}
-          <div>
-            <div className="avatar avatar-placeholder" onClick={() => navigate("/profile")}>
+          
+          <div className="flex flex-row gap-4 items-center">
+            <div className="avatar avatar-placeholder cursor-pointer " onClick={logoutUser}>
+  <div className=" text-neutral-content w-10 rounded-full bg-red-900">
+    <span className="text-xs"><i className="bi bi-box-arrow-left text-white"></i></span>
+  </div></div>
+            <div className="avatar avatar-placeholder cursor-pointer" onClick={() => navigate("/profile")}>
   <div className="bg-neutral text-neutral-content w-10 rounded-full">
     <span className="text-xs">{avatarLetter}</span>
   </div>

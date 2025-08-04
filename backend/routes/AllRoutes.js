@@ -25,7 +25,7 @@ AllRoutes.get("/user/:id", AuthTokenMiddleware , ViewUserController);
 AllRoutes.get("/user", AuthTokenMiddleware , ViewUserByEmailController);
 
 //endpoint to edit my profile
-AllRoutes.patch("/user/:id", AuthTokenMiddleware , EditUserController);
+AllRoutes.patch("/user", AuthTokenMiddleware , EditUserController);
 
 //endpoint to delete the entire profile
 AllRoutes.delete("/user/:id", AuthTokenMiddleware , DeleteUserController);

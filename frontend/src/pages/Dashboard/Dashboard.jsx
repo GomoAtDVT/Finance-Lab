@@ -17,13 +17,13 @@ export default function Dashboard() {
         <Navigation/> 
         <section className="flex flex-col h-max min-h-screen bg-gray-100 ">
         <section className='grid grid-rows-1 grid-cols-3 gap-4  p-4'>
-        <div className=" rounded shadow-2xs bg-blue-200 h-40 col-1 row-1">
+        <div className=" rounded shadow-2xs bg-blue-400 h-40 col-1 row-1">
             <AccountBalance />
         </div>
-        <div className=" rounded shadow-2xs bg-red-300 h-40 col-2 row-1">
+        <div className=" rounded shadow-2xs bg-red-500 h-40 col-2 row-1">
             <MonthlyExpenses />
         </div>
-        <div className=" rounded shadow-2xs bg-green-300 h-40 col-3 row-1">
+        <div className=" rounded shadow-2xs bg-green-400 h-40 col-3 row-1">
             <MonthlyIncome />
         </div>
 

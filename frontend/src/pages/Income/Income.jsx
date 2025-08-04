@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useRef, useEffect } from "react";
 import Navigation from "../../components/navigation/Navigation";
+import { useNavigate } from "react-router-dom";
 export default function Income() {
   const [editIdx, setEditIdx] = useState(null);
   const [incomes, setIncomes] = useState([]);
@@ -10,7 +11,19 @@ export default function Income() {
     category: "",
   });
   const modalRef = useRef(null);
-
+const navigate = useNavigate();
+    function toExpense(){
+        navigate("/expenses");
+    }
+    function toIncome(){
+        navigate("/income");
+    }
+    function toDashboard(){
+        navigate("/dashboard");
+    }
+    function toChart(){
+        navigate("/categoryChart");
+    }
   // onChange({...transactions, name: event.target.value});
   const openModal = (idx) => {
     setEditIdx(idx);
@@ -97,8 +110,14 @@ export default function Income() {
   return (
     <>
     <Navigation />
-      <section className="flex flex-row gap-6 justify-center items-center p-20.5 bg-gray-200">
-        <section className="flex flex-col  gap-4 p-4 mt-4  rounded-lg shadow-md bg-white">
+    <section className="flex flex-row">
+        <aside className="flex flex-col w-100 p-4 gap-10 pt-16 bg-gray-100 h-screen shadow-md">
+            <p onClick={toExpense} className="btn font-semibold italic border-b-1  ">Expense Transactions</p>
+            <p onClick={toDashboard} className="btn  font-semibold italic border-b-1 p-4">Dashboard</p>
+            <p onClick={toChart} className="btn font-semibold italic border-b-1 p-4">Category Chart</p>
+        </aside>
+      <section className="flex flex-row gap-6 justify-center items-center p-5.5 bg-gray-200">
+        <section className="flex flex-col gap-4 p-4 mt-4  rounded-lg shadow-md bg-white">
           <h1 className="text-2xl font-bold p-4">Add incomes</h1>
           <form
             action={SubmitIncome}
@@ -110,7 +129,7 @@ export default function Income() {
                 type="text"
                 placeholder="income Name"
                 name="name"
-                className="input input-bordered w-full  "
+                className="input input-bordered w-full bg-gray-100"
               />
             </div>
             <div className="flex flex-col p-2">
@@ -119,7 +138,7 @@ export default function Income() {
                 type="number"
                 placeholder="Amount"
                 name="amount"
-                className="input input-bordered w-full  "
+                className="input input-bordered w-full bg-gray-100"
               />
             </div>
             <div className="flex flex-col p-2">
@@ -127,7 +146,7 @@ export default function Income() {
               <select
                 name="category"
                 id=""
-                className="select select-bordered w-full "
+                className="select select-bordered w-full bg-gray-100"
               >
                 <option value="pick a category" disabled>
                   select a category
@@ -143,7 +162,7 @@ export default function Income() {
         <section className="w-200 p-4 bg-white rounded-lg shadow-md mt-4">
           <h1 className="text-2xl font-bold p-4">View/edit incomes</h1>
           <div className="overflow-x-auto mt-4 border rounded-lg overflow-y-scroll min-h-90 h-max">
-            <table className="table table-zebra">
+            <table className="table table-zebra ">
               <thead>
                 <tr className="bg-gray-200 ">
                   <th className=" ">#</th>
@@ -251,7 +270,7 @@ export default function Income() {
             </form>
           </dialog>
         </section>
-      </section>
+      </section></section>
     </>
   );
 }
