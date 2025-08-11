@@ -26,7 +26,7 @@ export const ExpenseBarChart = () => {
       {
         label: 'Expenses',
         data: expenses.map(transaction => transaction.amount),
-        backgroundColor: 'rgba(255, 99, 132)',
+        backgroundColor: 'rgb(193, 18, 31)',
         borderRadius: 25,
       },
     ],

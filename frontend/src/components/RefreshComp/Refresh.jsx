@@ -1,7 +1,25 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Refresh() {
+  const [myModal, setMyModal] = useState(false);
+  const navigate = useNavigate();
+  const modalRef = useRef(null);
+  const openModal = () => {
+    if(myModal === true){
+      modalRef.current.showModal();
+      setTimeout(() => {
+        navigate("/");
+      },7000);
+    }
+  };
+
+  const closeModal = () => {
+    setEditIdx(null);
+    modalRef.current.close();
+    
+  };
     async function RefreshUser() {
         try {
     axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
@@ -13,16 +31,18 @@ export default function Refresh() {
     }
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+
+  }, []);
   return (
     <>
       {/* The button to open modal */}
-      <label htmlFor="my_modal_7" className="btn">
+      {/* <label htmlFor="my_modal_7" className="btn">
         open modal
-      </label>
+      </label> */}
 
       {/* Put this part before </body> tag */}
-      <form action={RefreshUser}>
+      {/* <form action={RefreshUser}>
         <input type="checkbox" id="my_modal_7" className="modal-toggle" />
         <div className="modal visible" role="dialog">
           <div className="modal-box">
@@ -33,7 +53,42 @@ export default function Refresh() {
             Refresh
           </button>
         </div>
-      </form>
+      </form> */}
+      {/* <dialog ref={modalRef} className="modal" onClose={closeModal}>
+            <div className="modal-box">
+              <h3 className="font-bold text-lg">Edit income</h3>
+              {editIdx !== null && (
+                <section>
+                  <form
+                    action={RefreshUser}
+                    className="flex flex-col w-full gap-4 p-4   shadow-md bg-white"
+                  >
+                    <div className="flex flex-col p-2">
+                      <label htmlFor=""></label>
+                      <input
+                        type="text"
+                        placeholder="income Name"
+                        className="input input-bordered w-full"
+                        value={editForm.name}
+                        onChange={(e) =>
+                          setEditForm({ ...editForm, name: e.target.value })
+                        }
+                      />{" "}
+                    </div>
+                   
+                    <button className="btn">Submit</button>
+                  </form>
+                </section>
+              )}
+            </div>
+            <form
+              method="dialog"
+              className="modal-backdrop"
+              onClick={closeModal}
+            >
+              <button>close</button>
+            </form>
+          </dialog> */}
     </>
   );
 }
