@@ -2,10 +2,10 @@ import {client} from '../index.js'
 
 export const EditUserController =  (req, res) => {
     const { id } = req.params;
-    const { username, email, password, date_of_birth } = req.body;
+    const { username, email, password, date_of_birth, country, city } = req.body;
 
-    const query = 'UPDATE users SET  username = $1, email = $2, password=$3, date_of_birth=$4 WHERE id=$5'
-    const values = [username, email, password, date_of_birth, id]
+    const query = 'UPDATE users SET  username = $1,  password=$2, date_of_birth=$3, country=$4, city=$5 WHERE email=$6'
+    const values = [username,  password, date_of_birth, country, city, email]
 
     client.query(query,values, (err, results) => {
         if(err){

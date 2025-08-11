@@ -6,5 +6,5 @@ import jwt from 'jsonwebtoken';
  * @returns {string} The generated access token
  */
 export default function GenerateAccessTokenMiddleware(user) {
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '2h' })
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '7m' })
 }

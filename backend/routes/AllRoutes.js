@@ -1,15 +1,15 @@
 import express from "express";
 import { RegisterUserController } from "../controllers/RegisterUserController.js";
 import { LoginUserController } from "../controllers/LoginUserController.js";
-import { ViewUserController } from "../controllers/ViewUserController.js";
+import { ViewUserController, ViewUserByEmailController } from "../controllers/ViewUserController.js";
 import { EditUserController } from "../controllers/EditUserController.js";
 import { DeleteUserController } from "../controllers/DeleteUserController.js";
-import { AddExpenseController } from "../controllers/AddExpenseController.js";
+import { AddTransactionController } from "../controllers/AddTransactionController.js";
 import AuthTokenMiddleware from "../middleware/AuthTokenMiddleware.js";
 import { RefreshController } from "../controllers/RefreshController.js";
-import { ViewExpensesController } from "../controllers/ViewExpensesController.js";
-import { EditExpenseController } from "../controllers/EditExpenseController.js";
-import { DeleteExpenseController } from "../controllers/DeleteExpenseController.js";
+import { ViewTransactionsController, ViewTransactionsIncomeController, ViewTransactionsExpenseController } from "../controllers/ViewTransactionsController.js";
+import { EditTransactionController } from "../controllers/EditTransactionController.js";
+import { DeleteTransactionController } from "../controllers/DeleteTransactionController.js";
 
 export const AllRoutes = express.Router();
 
@@ -21,28 +21,46 @@ AllRoutes.post("/login", LoginUserController);
 
 //endpoint to check out my profile
 AllRoutes.get("/user/:id", AuthTokenMiddleware , ViewUserController);
+//endpoint to view user by email
+AllRoutes.get("/user", AuthTokenMiddleware , ViewUserByEmailController);
 
 //endpoint to edit my profile
-AllRoutes.patch("/user/:id", AuthTokenMiddleware , EditUserController);
+AllRoutes.patch("/user", AuthTokenMiddleware , EditUserController);
 
 //endpoint to delete the entire profile
 AllRoutes.delete("/user/:id", AuthTokenMiddleware , DeleteUserController);
 
 //endpoint to add an expense
-AllRoutes.post("/expenses", AuthTokenMiddleware , AddExpenseController);
+AllRoutes.post("/transactions/expenses", AuthTokenMiddleware , AddTransactionController);
+
+//endpoint to add an income
+AllRoutes.post("/transactions/incomes", AuthTokenMiddleware , AddTransactionController);
+
+//endpoint to view all transactions
+// Note: This endpoint is designed to retrieve all transactions for the authenticated user.
+AllRoutes.get("/transactions", AuthTokenMiddleware,  ViewTransactionsController);
 
 // view all my expenses
-AllRoutes.get("/expenses", AuthTokenMiddleware,  ViewExpensesController);
+AllRoutes.get("/transactions/expenses", AuthTokenMiddleware,  ViewTransactionsExpenseController);
+
+// view all my incomes
+AllRoutes.get("/transactions/incomes", AuthTokenMiddleware,  ViewTransactionsIncomeController);
 
 //endpoint to edit an expense
 // Note: The endpoint is designed to edit a specific expense by its ID.
-AllRoutes.patch("/expenses/:id", AuthTokenMiddleware, EditExpenseController);
+AllRoutes.patch("/transactions/:id", AuthTokenMiddleware, EditTransactionController);
 
 //endpoint to delete an expense
-AllRoutes.delete("/expenses/:id", AuthTokenMiddleware, DeleteExpenseController);
+AllRoutes.delete("/transactions/:id", AuthTokenMiddleware, DeleteTransactionController);
 
 //endpoint to refresh the access token
 AllRoutes.post("/refresh", RefreshController);
-// expenses
+
+// AllRoutes.get('/user/me', authenticateToken, async (req, res) => {
+//   // req.user should be set by your auth middleware
+//   const userId = req.user.id;
+//   const result = await client.query('SELECT * FROM users WHERE id = $1', [userId]);
+//   res.json({ user: result.rows[0] });
+// });
 // goals
  

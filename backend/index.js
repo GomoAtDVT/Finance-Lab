@@ -16,7 +16,7 @@ connectionString: process.env.DATABASE_URL,});
 client.connect().then(() => console.log("Connected to the database")).catch((err) => console.log(err.message));
 
 //Brother please don't forget to add the frontend url in the cors origin
-app.use(cors({origin: 'http://localhost:5173',credentials: true})); 
+app.use(cors({origin: 'http://localhost:5174',credentials: true})); 
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api", AllRoutes);
